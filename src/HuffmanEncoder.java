@@ -95,6 +95,7 @@ public class HuffmanEncoder {
         if (n == 0)
             return; // dunno
         int sizeOfMap = 10 * n - 1;
+        System.out.println(sizeOfMap);
 
         // Up until now, we have written the length of the map
         // now, we do breadth first search
@@ -107,7 +108,10 @@ public class HuffmanEncoder {
             Node check = queue.poll();
             if (check.isLeaf()) {
                 map += "1";
-                map += Integer.toBinaryString(check.character);
+                String add = String.format("%8s", Integer.toBinaryString(check.character)).replace(' ', '0');
+                System.out.println(add);
+                map += add;
+                System.out.println(map);
             } else {
                 // is not leaf, add 0
                 map += "0";
@@ -116,6 +120,7 @@ public class HuffmanEncoder {
                 queue.add(check.rightChild);
             }
         }
+        System.out.println(map);
         // map string contains the string we have to write to the file
         // pad extra zeros
         while (map.length() % 8 != 0) {
